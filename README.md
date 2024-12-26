@@ -11,7 +11,7 @@ EduClub is a course enrollment platform designed to facilitate students in enrol
 
 ## Technologies Used
 - **Frontend:** React, Material-UI
-- **Backend:** Flask, SQLAlchemy, Flask-JWT-Extended
+- **Backend:** Flask, SQLAlchemy
 - **Database:** SQLite
 
 ## Setup and Installation
