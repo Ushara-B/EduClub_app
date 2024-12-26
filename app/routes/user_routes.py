@@ -50,3 +50,24 @@ def enroll_course():
 
     except Exception as e:
         return jsonify({'error': 'An unexpected error occurred', 'details': str(e)}), 500
+
+
+@user_blueprint.route('/registered-courses', methods=['GET'])
+def get_registered_courses():
+    user_id = request.args.get('user_id')  # Extract user_id from query params
+    if not user_id:
+        return jsonify({'error': 'User ID is required'}), 400
+
+    # Fetch all courses the user is enrolled in
+    enrollments = Enrollment.query.filter_by(student_id=user_id).all()
+    if not enrollments:
+        return jsonify([]), 200  # Return an empty list if no enrollments exist
+
+    courses = []
+    for enrollment in enrollments:
+        course = Course.query.get(enrollment.course_id)
+        if course:
+            courses.append({'id': course.id, 'name': course.name})
+
+    return jsonify(courses), 200
+
