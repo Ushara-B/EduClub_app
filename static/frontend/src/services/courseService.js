@@ -12,3 +12,9 @@ export const enrollCourse = async (userId, courseId) => {
         course_id: courseId,
     });
 };
+
+export const getRegisteredCourses = async (userId) => {
+    return axios.get(`${API_URL}registered-courses`, {
+        params: { user_id: userId },
+    });
+};

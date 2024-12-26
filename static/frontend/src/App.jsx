@@ -6,6 +6,7 @@ import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 import CourseList from './components/CourseList';
 import UserProfile from './components/UserProfile';
+import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute component
 
 function Layout({ children }) {
     const location = useLocation();
@@ -26,14 +27,39 @@ function App() {
         <Router>
             <Layout>
                 <Routes>
+                    {/* Public Routes */}
                     <Route path="/" element={<SignInPage />} />
-                    <Route path="/home" element={<HomePage />} />
                     <Route path="/login" element={<SignInPage />} />
                     <Route path="/signup" element={<SignUpPage />} />
-                    <Route path="/courses" element={<CourseList />} />
-                    <Route path="/profile" element={<UserProfile />} />
-                    {/* Redirect to home if the route does not exist */}
-                    <Route path="*" element={<Navigate to="/" />} />
+
+                    {/* Protected Routes */}
+                    <Route
+                        path="/home"
+                        element={
+                            <ProtectedRoute>
+                                <HomePage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/courses"
+                        element={
+                            <ProtectedRoute>
+                                <CourseList />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <ProtectedRoute>
+                                <UserProfile />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    {/* Redirect to login if the route does not exist */}
+                    <Route path="*" element={<Navigate to="/login" />} />
                 </Routes>
             </Layout>
         </Router>
