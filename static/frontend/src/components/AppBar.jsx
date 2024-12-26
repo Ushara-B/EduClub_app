@@ -6,23 +6,27 @@ import { logout } from '../services/authService';
 function NavBar() {
     const navigate = useNavigate();
 
-    const handleLogout = async () => {
-        try {
-            await logout();
-            navigate('/');
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
+    const handleLogout = () => {
+        logout();
+        navigate('/login'); // Redirect to login page after logout
+    };
+
+    const handleProfile = () => {
+        navigate('/profile'); // Navigate to the user profile page
     };
 
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" style={{ flexGrow: 1 }}>
                     Course Club
                 </Typography>
-                <Button color="inherit" onClick={() => navigate('/profile')}>Profile</Button>
-                <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                <Button color="inherit" onClick={handleProfile}>
+                    Profile
+                </Button>
+                <Button color="inherit" onClick={handleLogout}>
+                    Logout
+                </Button>
             </Toolbar>
         </AppBar>
     );
