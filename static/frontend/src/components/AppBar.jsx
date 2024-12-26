@@ -16,7 +16,7 @@ function NavBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: '#1a379e' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: 1 }}>
                     Course Club

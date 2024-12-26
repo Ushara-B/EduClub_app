@@ -97,7 +97,7 @@ const SignUpPage = () => {
                             fullWidth
                             disabled={loading}
                             sx={{
-                                bgcolor: '#0000FF',
+                                bgcolor: '#1a379e',
                                 '&:hover': { bgcolor: '#0000CC' },
                                 color: 'white',
                                 textTransform: 'none',
