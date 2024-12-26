@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import AppBar from './components/AppBar';
+import NavBar from './components/AppBar';
 import HomePage from './components/HomePage';
 import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
@@ -10,12 +10,12 @@ import UserProfile from './components/UserProfile';
 function Layout({ children }) {
     const location = useLocation();
 
-    // Show AppBar only if not on the SignIn or SignUp page
-    const showAppBar = !['/', '/login', '/signup'].includes(location.pathname);
+    // Show NavBar only if not on the SignIn or SignUp page
+    const showNavBar = !['/', '/login', '/signup'].includes(location.pathname);
 
     return (
         <>
-            {showAppBar && <AppBar />}
+            {showNavBar && <NavBar />}
             {children}
         </>
     );

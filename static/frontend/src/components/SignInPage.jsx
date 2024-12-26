@@ -12,15 +12,10 @@ const SignInPage = () => {
         event.preventDefault();
         try {
             await login(email, password);
-            navigate('/home'); // Navigate to the home page after login
+            navigate('/courses'); // Redirect to courses after successful login
         } catch (error) {
-            console.error('Login failed:', error);
-            alert('Login failed!');
+            alert('Login failed');
         }
-    };
-
-    const handleSignUp = () => {
-        navigate('/signup'); // Navigate to the signup page
     };
 
     return (
@@ -58,22 +53,6 @@ const SignInPage = () => {
                     Sign In
                 </Button>
             </form>
-            <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-                Don't have an account?{' '}
-                <Button
-                    onClick={handleSignUp}
-                    variant="text"
-                    sx={{
-                        color: 'primary.main',
-                        textTransform: 'none',
-                        fontSize: '1rem',
-                        padding: 0,
-                        marginLeft: 0.5,
-                    }}
-                >
-                    Sign Up
-                </Button>
-            </Typography>
         </Container>
     );
 };
