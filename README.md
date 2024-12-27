@@ -17,8 +17,8 @@ EduClub is a course enrollment platform designed to facilitate students in enrol
 ## Setup and Installation
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/EduClub.git
-   cd EduClub
+   git clone https://github.com/https:Ushara-B/EduClub.git
+   cd EduClub_app
 2. Install dependencies:
     For Backend:
 
