@@ -1,11 +1,9 @@
 from flask import Blueprint, jsonify, request
 from ..models import db, Enrollment, Course, Student
-from flask_jwt_extended import jwt_required, get_jwt_identity  # If using JWT for authentication
 
 user_blueprint = Blueprint('user', __name__)
 
-
-# Endpoint to fetch user profile details
+# Endpoint to fetch user profile details along with enrolled courses
 @user_blueprint.route('/profile', methods=['GET'])
 def get_user_profile():
     user_id = request.args.get('user_id')  # Extract user_id from the query params
@@ -14,11 +12,24 @@ def get_user_profile():
     if not user:
         return jsonify({'error': 'User not found'}), 404
 
+    # Fetch all courses the user is enrolled in
+    enrollments = Enrollment.query.filter_by(student_id=user_id).all()
+    enrolled_courses = [
+        {'id': enrollment.course_id, 'name': Course.query.get(enrollment.course_id).name}
+        for enrollment in enrollments
+    ]
+
     return jsonify({
         'id': user.id,
         'name': user.name,
-        'email': user.email
+        'email': user.email,
+        'age': user.age,
+        'phone': user.phn_no,
+        'address': user.adress,
+        'enrolled_courses': enrolled_courses
     }), 200
+
+
 
 
 # Endpoint to enroll a user in a course

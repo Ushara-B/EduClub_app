@@ -10,11 +10,15 @@ import {
     CircularProgress,
 } from '@mui/material';
 import backgroundImage from '../assets/backimglogin.jpg';
+import log from "eslint-plugin-react/lib/util/log.js";
 
 const SignUpPage = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [age, setAge]= useState("");
+    const [phn_no, setPhone]= useState('')
+    const [adress, setAdress]=useState('')
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -25,7 +29,7 @@ const SignUpPage = () => {
         setError('');
 
         try {
-            await signup(name, email, password); // Send name, email, and password only
+            await signup(name, email, password, age, phn_no, adress); // Send data
             alert('Sign Up Successful! Please log in.');
             navigate('/login'); // Redirect to login page after successful sign-up
         } catch (err) {
@@ -85,6 +89,36 @@ const SignUpPage = () => {
                             fullWidth
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <TextField
+                            label="age"
+                            type="number"
+                            required
+                            fullWidth
+                            value={age}
+                            onChange={(e) => setAge(e.target.value)}
+                             InputProps={{
+        inputProps: {
+            min: 1,
+            max: 120
+        }
+    }}
+                        />
+                        <TextField
+                            label="phone number"
+                            type="phone number"
+                            required
+                            fullWidth
+                            value={phn_no}
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                        <TextField
+                            label="Address"
+                            type="Address"
+                            required
+                            fullWidth
+                            value={adress}
+                            onChange={(e) => setAdress(e.target.value)}
                         />
                         {error && (
                             <Typography color="error" variant="body2" align="center">
