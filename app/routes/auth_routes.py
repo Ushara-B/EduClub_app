@@ -13,7 +13,7 @@ def signup():
         return jsonify({'error': 'User already exists'}), 409
 
     hashed_password = generate_password_hash(data['password'])
-    new_user = Student(name=data['name'], email=data['email'], password_hash=hashed_password)
+    new_user = Student(name=data['name'], email=data['email'], password_hash=hashed_password, age=data['age'], adress=data['adress'], phn_no=data['phn_no'])
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
